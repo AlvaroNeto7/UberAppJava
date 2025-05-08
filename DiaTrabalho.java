@@ -1,9 +1,13 @@
+import java.time.LocalDate;
+
 public class DiaTrabalho {
+    private LocalDate data;
     private double horasTrabalhadas;
     private double ganhosBrutos;
     private double custoAbastecimento;
 
     public DiaTrabalho(double horasTrabalhadas, double ganhosBrutos, double custoAbastecimento) {
+        this.data = LocalDate.now();
         this.horasTrabalhadas = horasTrabalhadas;
         this.ganhosBrutos = ganhosBrutos;
         this.custoAbastecimento = custoAbastecimento;
@@ -11,6 +15,14 @@ public class DiaTrabalho {
 
     public double calcularLucroLiquido() {
         return ganhosBrutos - custoAbastecimento;
+    }
+
+    public double calcularGanhoPorHora() {
+        return horasTrabalhadas > 0 ? calcularLucroLiquido() / horasTrabalhadas : 0;
+    }
+
+    public LocalDate getData() {
+        return data;
     }
 
     public double getHorasTrabalhadas() {
@@ -27,6 +39,8 @@ public class DiaTrabalho {
 
     @Override
     public String toString() {
-        return horasTrabalhadas + "," + ganhosBrutos + "," + custoAbastecimento + "," + calcularLucroLiquido();
+        return data + "," + horasTrabalhadas + "," + ganhosBrutos + "," + custoAbastecimento + "," +
+               String.format("%.2f", calcularLucroLiquido()) + "," +
+               String.format("%.2f", calcularGanhoPorHora());
     }
 }

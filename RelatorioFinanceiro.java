@@ -18,10 +18,10 @@ public class RelatorioFinanceiro {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] partes = linha.split(",");
-                if (partes.length >= 3) {
-                    double horas = Double.parseDouble(partes[0]);
-                    double ganhos = Double.parseDouble(partes[1]);
-                    double abastecimento = Double.parseDouble(partes[2]);
+                if (partes.length >= 4) {
+                    double horas = Double.parseDouble(partes[1]);
+                    double ganhos = Double.parseDouble(partes[2]);
+                    double abastecimento = Double.parseDouble(partes[3]);
                     dias.add(new DiaTrabalho(horas, ganhos, abastecimento));
                 }
             }
@@ -30,6 +30,7 @@ public class RelatorioFinanceiro {
         }
         return dias;
     }
+    
 
     public static void mostrarMedia(List<DiaTrabalho> dias) {
         if (dias.isEmpty()) {
@@ -54,5 +55,8 @@ public class RelatorioFinanceiro {
         System.out.printf("Média de Ganhos: R$%.2f\n", totalGanhos / diasCount);
         System.out.printf("Média de Abastecimento: R$%.2f\n", totalAbastecimento / diasCount);
         System.out.printf("Média de Lucro Líquido: R$%.2f\n", totalLucro / diasCount);
+        System.out.printf("Média de Lucro Líquido: R$%.2f\n", totalLucro / diasCount);
+        System.out.printf("Média de Ganho por Hora: R$%.2f\n", totalLucro / totalHoras);
+
     }
 }
